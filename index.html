@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025年度 1年 1月 進研模試 英語 解答・解説 重要語句復習アプリ</title>
+    <title>2025年度 1年1月 進研模試 英語 解答・解説 重要語句復習アプリ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -101,7 +101,7 @@
                 <span class="px-3 py-1 bg-brand-100 text-brand-600 rounded-lg text-xs font-bold tracking-wider uppercase">Study App</span>
             </div>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                <span class="text-brand-600">2025年度 1年 1月 進研模試 英語</span><br>
+                <span class="text-brand-600">2025年度 1年1月 進研模試 英語</span><br>
                 解答・解説 重要語句復習
             </h1>
         </header>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 
-                <!-- Word List Container: Ensure explicit height and overflow handling -->
+                <!-- Word List Container -->
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
                     <div id="word-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-[60vh] overflow-y-auto pr-2">
                         <!-- Words will be injected here via JS -->
@@ -221,7 +221,7 @@
             </div>
         </section>
 
-        <!-- Test Options & Quiz Sections (Simplified structure for reliability) -->
+        <!-- Test Options & Quiz Sections -->
         <section id="test-options-section" class="card hidden text-center py-16">
             <h2 class="text-3xl font-bold text-slate-800 mb-8">テスト問題数を選択</h2>
             <div id="test-choices" class="flex flex-wrap justify-center gap-4 mb-12"></div>
@@ -280,125 +280,93 @@
     </div>
 
     <script>
-        // --- DATA ---
-        // Extracted completely from the uploaded 2025_206_K_1301.pdf file
+        // --- VOCABULARY DATA EXTRACTED FROM PDF ---
+        // Extracted based on "Shinken Mock Exam" format (Manavision)
         const vocabularyData = [
-            // Part 1
-            {"english": "a bit", "japanese": "少し", "sentence": "I'm a bit tired today.", "sentence_ja": "今日は少し疲れています。"},
-            {"english": "recommend", "japanese": "~を薦める", "sentence": "I recommend the pasta dish.", "sentence_ja": "パスタ料理をお薦めします。"},
-            
-            // Part 1 No.3
-            {"english": "Would you mind doing?", "japanese": "~してくださいませんか?", "sentence": "Would you mind closing the door?", "sentence_ja": "ドアを閉めてくださいませんか？"},
-            {"english": "be busy doing", "japanese": "~するのに忙しい", "sentence": "She is busy studying for the exam.", "sentence_ja": "彼女は試験勉強で忙しい。"},
-
-            // Part 2
-            {"english": "put in a lot of effort", "japanese": "相当な努力をする", "sentence": "He put in a lot of effort to finish the project.", "sentence_ja": "彼はプロジェクトを終わらせるために相当な努力をした。"},
-            {"english": "wonder if", "japanese": "~かなと思う", "sentence": "I wonder if it will snow tomorrow.", "sentence_ja": "明日は雪が降るかなあ。"},
-            {"english": "to be honest", "japanese": "正直に言うと", "sentence": "To be honest, I didn't like the movie.", "sentence_ja": "正直に言うと、私はその映画が好きではありませんでした。"},
-            {"english": "there is nothing wrong with", "japanese": "~に悪いことは何もない", "sentence": "There is nothing wrong with being different.", "sentence_ja": "人と違うことに悪いことは何もない。"},
-
-            // Part 3
-            {"english": "What brings you to", "japanese": "なぜ[何をするために] ~に来ているのですか?", "sentence": "What brings you to Japan?", "sentence_ja": "なぜ日本に来ているのですか？"},
-            {"english": "leave up to", "japanese": "~を(人)に任せる", "sentence": "I'll leave the choice up to you.", "sentence_ja": "選択はあなたに任せます。"},
-            {"english": "be confident about", "japanese": "~に自信がある", "sentence": "She is confident about her skills.", "sentence_ja": "彼女は自分のスキルに自信がある。"},
-            {"english": "Why don't we", "japanese": "~してはどうですか?", "sentence": "Why don't we take a break?", "sentence_ja": "休憩してはどうですか？"},
-            {"english": "go out with", "japanese": "~とデートをする", "sentence": "He asked her to go out with him.", "sentence_ja": "彼は彼女にデートしようと誘った。"},
-            {"english": "avoid doing", "japanese": "~することを避ける", "sentence": "Try to avoid making mistakes.", "sentence_ja": "間違いをするのを避けるようにしなさい。"},
-            {"english": "apologize for", "japanese": "~のことで謝る", "sentence": "I apologize for the delay.", "sentence_ja": "遅れについて謝罪します。"},
-            {"english": "in order to do", "japanese": "~するために", "sentence": "He woke up early in order to catch the train.", "sentence_ja": "彼は電車に間に合うように早起きした。"},
-            {"english": "in advance", "japanese": "前もって", "sentence": "Thank you in advance.", "sentence_ja": "前もってお礼申し上げます（よろしくお願いします）。"},
-            {"english": "a pain in the neck", "japanese": "人をうんざりさせるもの", "sentence": "This homework is a pain in the neck.", "sentence_ja": "この宿題はうんざりするものだ。"},
-            {"english": "give it a try", "japanese": "やってみる", "sentence": "It looks hard, but I'll give it a try.", "sentence_ja": "難しそうだが、やってみるよ。"},
-            {"english": "see one's point", "japanese": "(人)の言っていることがわかる", "sentence": "I see your point, but I still disagree.", "sentence_ja": "あなたの言い分はわかりますが、それでも同意できません。"},
-            {"english": "make sure whether", "japanese": "~かどうか確認する", "sentence": "Make sure whether the lights are off.", "sentence_ja": "電気が消えているかどうか確認しなさい。"},
-
-            // 3 文法・語法
-            {"english": "whatever", "japanese": "(~する) どんな…でも", "sentence": "Do whatever you think is right.", "sentence_ja": "正しいと思うことはどんなことでもしなさい。"},
-            {"english": "take it for granted that", "japanese": "~を当然のことと思う", "sentence": "Don't take it for granted that your parents will always be there.", "sentence_ja": "両親がいつもそこにいるのを当然のことと思ってはいけない。"},
-            {"english": "structure", "japanese": "構造物", "sentence": "The Eiffel Tower is a famous structure.", "sentence_ja": "エッフェル塔は有名な構造物だ。"},
-            {"english": "make sure", "japanese": "確かめる", "sentence": "Make sure to lock the door.", "sentence_ja": "必ずドアに鍵をかけるようにしなさい。"},
-            {"english": "explore", "japanese": "~を探究する", "sentence": "Let's explore the city.", "sentence_ja": "街を探検しましょう。"},
-            {"english": "apply", "japanese": "~をつける", "sentence": "Apply the glue to the paper.", "sentence_ja": "紙にのりをつけなさい。"},
-            {"english": "span", "japanese": "~にかかる", "sentence": "The rainbow spanned the sky.", "sentence_ja": "虹が空にかかった。"},
-            {"english": "conclude with", "japanese": "~で締めくくる", "sentence": "The meeting concluded with a speech.", "sentence_ja": "会議はスピーチで締めくくられた。"},
-            {"english": "All you have to do is do", "japanese": "あなたはただ~しさえすればよい", "sentence": "All you have to do is press this button.", "sentence_ja": "あなたはただこのボタンを押しさえすればよい。"},
-            {"english": "S is better than S' used to be", "japanese": "SはかつてのS'よりよい", "sentence": "My health is better than it used to be.", "sentence_ja": "私の健康状態は以前より良くなっている。"},
-            {"english": "it is worth doing", "japanese": "~することは価値がある", "sentence": "It is worth reading this book.", "sentence_ja": "この本は読む価値がある。"},
-
-            // 4 長文読解
-            {"english": "bend down", "japanese": "かがむ", "sentence": "He bent down to tie his shoes.", "sentence_ja": "彼は靴紐を結ぶためにかがんだ。"},
-            {"english": "scattered", "japanese": "散在している", "sentence": "Papers were scattered across the desk.", "sentence_ja": "書類が机の上に散らばっていた。"},
-            {"english": "forehead", "japanese": "額", "sentence": "She wiped the sweat from her forehead.", "sentence_ja": "彼女は額の汗を拭った。"},
-            {"english": "rub", "japanese": "~をこする", "sentence": "He rubbed his hands together to warm them.", "sentence_ja": "彼は手を温めるためにこすり合わせた。"},
-            {"english": "run into", "japanese": "~にぶつかる、出くわす", "sentence": "I ran into my teacher at the supermarket.", "sentence_ja": "スーパーで先生に偶然会った。"},
-            {"english": "emphasis on", "japanese": "~の強調", "sentence": "There is a strong emphasis on teamwork.", "sentence_ja": "チームワークが強く強調されている。"},
-            {"english": "occurrence", "japanese": "出来事", "sentence": "Traffic jams are a daily occurrence here.", "sentence_ja": "交通渋滞はここでは日常的な出来事だ。"},
-            {"english": "at least", "japanese": "少なくとも", "sentence": "It will cost at least $100.", "sentence_ja": "少なくとも100ドルはかかるだろう。"},
-            {"english": "refer to", "japanese": "~のことを言う、言及する", "sentence": "Please refer to the manual.", "sentence_ja": "マニュアルを参照してください。"},
-            {"english": "head-butt", "japanese": "頭突き", "sentence": "The player was penalized for a head-butt.", "sentence_ja": "その選手は頭突きで罰せられた。"},
-            {"english": "slip", "japanese": "そっと行く、滑る", "sentence": "She slipped a note into his hand.", "sentence_ja": "彼女は彼の手の中にそっとメモを渡した。"},
-            {"english": "germ", "japanese": "ばい菌", "sentence": "Wash your hands to prevent germs.", "sentence_ja": "ばい菌を防ぐために手を洗いなさい。"},
-            {"english": "hold out", "japanese": "~を差し出す", "sentence": "He held out the keys to me.", "sentence_ja": "彼は私に鍵を差し出した。"},
-            {"english": "stare at", "japanese": "~をじっと見つめる", "sentence": "It's rude to stare at strangers.", "sentence_ja": "見知らぬ人をじっと見つめるのは失礼だ。"},
-            {"english": "let pass", "japanese": "~を見逃す", "sentence": "Don't let this opportunity pass.", "sentence_ja": "この機会を見逃してはいけない。"},
-            {"english": "overhear", "japanese": "~を偶然に聞く", "sentence": "I overheard them talking about the party.", "sentence_ja": "私は彼らがパーティーについて話しているのを偶然聞いた。"},
-            {"english": "stick out", "japanese": "~を突き出す", "sentence": "He stuck out his hand for a handshake.", "sentence_ja": "彼は握手をしようと手を突き出した。"},
-            {"english": "eternity", "japanese": "永遠", "sentence": "Waiting felt like an eternity.", "sentence_ja": "待っている時間は永遠のように感じられた。"},
-            {"english": "release", "japanese": "~を放す", "sentence": "He released the fish back into the water.", "sentence_ja": "彼は魚を水に戻した。"},
-            {"english": "click", "japanese": "~をかちりと鳴らす", "sentence": "She clicked the pen nervously.", "sentence_ja": "彼女は神経質そうにペンをカチカチ鳴らした。"},
-            {"english": "into place", "japanese": "正しい場所[位置]に", "sentence": "The puzzle piece clicked into place.", "sentence_ja": "パズルのピースが正しい位置にカチッとはまった。"},
-            {"english": "temporary", "japanese": "一時的な", "sentence": "The job is only temporary.", "sentence_ja": "その仕事は一時的なものにすぎない。"},
-            {"english": "survive", "japanese": "~でなんとかやっていく、生き延びる", "sentence": "Plants need water to survive.", "sentence_ja": "植物は生き延びるために水を必要とする。"},
-            {"english": "as soon as possible", "japanese": "できるだけすぐに", "sentence": "Call me as soon as possible.", "sentence_ja": "できるだけすぐに電話してください。"},
-
-            // 5 長文読解
-            {"english": "absence", "japanese": "欠如", "sentence": "His absence was noticed by everyone.", "sentence_ja": "彼の不在（欠如）は皆に気づかれた。"},
-            {"english": "view A as B", "japanese": "AをBと見なす", "sentence": "We view this as a great success.", "sentence_ja": "私たちはこれを大成功と見なしている。"},
-            {"english": "whereas", "japanese": "~だが一方", "sentence": "He is tall, whereas his brother is short.", "sentence_ja": "彼は背が高いが、一方で彼の弟は背が低い。"},
-            {"english": "in danger", "japanese": "危険な状態の", "sentence": "The building is in danger of collapsing.", "sentence_ja": "その建物は倒壊の危険な状態にある。"},
-            {"english": "be bound to do", "japanese": "~するに違いない", "sentence": "It is bound to rain later.", "sentence_ja": "後で雨が降るに違いない。"},
-            {"english": "come across", "japanese": "~に偶然出くわす", "sentence": "I came across this photo in an old album.", "sentence_ja": "古いアルバムの中でこの写真に偶然出くわした。"},
-            {"english": "define", "japanese": "~を定義する", "sentence": "Please define the word 'love'.", "sentence_ja": "「愛」という言葉を定義してください。"},
-            {"english": "in terms of", "japanese": "~の観点から", "sentence": "Measure success in terms of happiness.", "sentence_ja": "幸福の観点から成功を測りなさい。"},
-            {"english": "prepare O to do", "japanese": "Oに~する準備をさせる", "sentence": "The coach prepared the team to win.", "sentence_ja": "コーチはチームに勝つ準備をさせた。"},
-            {"english": "fill O up with", "japanese": "Oを~でいっぱいにする", "sentence": "Fill the tank up with gas.", "sentence_ja": "タンクをガソリンでいっぱいにしなさい。"},
-            {"english": "sound", "japanese": "健全な", "sentence": "He gave me some sound advice.", "sentence_ja": "彼は私にいくつかの健全なアドバイスをくれた。"},
-            {"english": "depend on", "japanese": "~次第である", "sentence": "It depends on the weather.", "sentence_ja": "それは天気次第だ。"},
-            {"english": "on a regular basis", "japanese": "定期的に", "sentence": "We meet on a regular basis.", "sentence_ja": "私たちは定期的に会っている。"},
-            {"english": "predict", "japanese": "~を予測する", "sentence": "Can you predict the future?", "sentence_ja": "あなたは未来を予測できますか？"},
-            {"english": "standpoint", "japanese": "見地", "sentence": "From my standpoint, it's a good idea.", "sentence_ja": "私の見地からは、それは良い考えだ。"},
-            {"english": "over the long run", "japanese": "長い目で見れば", "sentence": "Investing is profitable over the long run.", "sentence_ja": "投資は長い目で見れば利益になる。"},
-            {"english": "be likely to do", "japanese": "~しそうである", "sentence": "She is likely to come late.", "sentence_ja": "彼女は遅れて来そうだ。"},
-            {"english": "wear out", "japanese": "~を使いきる、すり減らす", "sentence": "I wore out my favorite jeans.", "sentence_ja": "私はお気に入りのジーンズを履きつぶした（使いきった）。"},
-            {"english": "immediate", "japanese": "目の前の", "sentence": "Take care of your immediate needs.", "sentence_ja": "目の前の必要事項に対処しなさい。"},
-            {"english": "available", "japanese": "利用できる", "sentence": "Wi-Fi is available here.", "sentence_ja": "ここではWi-Fiが利用できる。"},
-            {"english": "foundation", "japanese": "基盤", "sentence": "Education is the foundation of success.", "sentence_ja": "教育は成功の基盤だ。"},
-            {"english": "claim", "japanese": "~だと主張する", "sentence": "He claims to know the answer.", "sentence_ja": "彼は答えを知っていると主張している。"},
-            {"english": "overwhelm", "japanese": "~を圧倒する", "sentence": "The army overwhelmed the enemy.", "sentence_ja": "軍隊は敵を圧倒した。"},
-            {"english": "be to blame for", "japanese": "~に対して責任がある", "sentence": "Bad weather is to blame for the delay.", "sentence_ja": "遅延の責任は悪天候にある。"},
-            {"english": "payoff", "japanese": "成果", "sentence": "The payoff for your hard work is success.", "sentence_ja": "あなたの努力の成果は成功だ。"},
-            {"english": "be based on", "japanese": "~に基づいている", "sentence": "This story is based on facts.", "sentence_ja": "この物語は事実に基づいている。"},
-            {"english": "oversee", "japanese": "~を監督する", "sentence": "The manager oversees the staff.", "sentence_ja": "マネージャーはスタッフを監督する。"},
-            {"english": "be responsible for", "japanese": "~に責任を負う", "sentence": "Parents are responsible for their children.", "sentence_ja": "親は子供に対して責任を負う。"},
-
-            // 6 表現力
-            {"english": "be kind to", "japanese": "~に親切にする", "sentence": "Be kind to animals.", "sentence_ja": "動物に親切にしなさい。"},
-            {"english": "in the end", "japanese": "結局、最後に", "sentence": "He admitted his mistake in the end.", "sentence_ja": "彼は結局、自分の間違いを認めた。"},
-            {"english": "in turn", "japanese": "今度は、同様に", "sentence": "She helped me, and I helped her in turn.", "sentence_ja": "彼女が私を助けてくれたので、今度は私が彼女を助けた。"},
-            {"english": "S + showed that", "japanese": "Sは~ということを示した", "sentence": "The study showed that sleep is important.", "sentence_ja": "その研究は睡眠が重要であることを示した。"},
-            {"english": "It was found that", "japanese": "~ということが発見された", "sentence": "It was found that the earth is round.", "sentence_ja": "地球は丸いということが発見された。"},
-            {"english": "this law [principle]", "japanese": "この法則", "sentence": "This principle applies to everyone.", "sentence_ja": "この法則は誰にでも当てはまる。"},
-            {"english": "work", "japanese": "作用する、機能する", "sentence": "My plan didn't work.", "sentence_ja": "私の計画はうまくいかなかった（作用しなかった）。"},
-            {"english": "in children's everyday lives", "japanese": "子どもの日常生活において", "sentence": "Play is important in children's everyday lives.", "sentence_ja": "遊びは子どもの日常生活において重要だ。"},
-            {"english": "pandemic", "japanese": "全国[世界]的大流行", "sentence": "The pandemic affected the global economy.", "sentence_ja": "その世界的流行は世界経済に影響を与えた。"},
-            {"english": "in a row", "japanese": "連続して", "sentence": "She won three games in a row.", "sentence_ja": "彼女は3試合連続で勝った。"},
-            {"english": "on average", "japanese": "平均して", "sentence": "We work 8 hours a day on average.", "sentence_ja": "私たちは平均して1日8時間働く。"},
-            {"english": "opportunity", "japanese": "機会", "sentence": "Don't miss this opportunity.", "sentence_ja": "この機会を逃してはいけない。"},
-            {"english": "consequence", "japanese": "影響、結果", "sentence": "Face the consequences of your choice.", "sentence_ja": "自分の選択の結果（影響）に向き合いなさい。"},
-            {"english": "addiction", "japanese": "中毒", "sentence": "He fought against drug addiction.", "sentence_ja": "彼は薬物中毒と戦った。"},
-            {"english": "ignore", "japanese": "~を無視する", "sentence": "He ignored the warning signs.", "sentence_ja": "彼は警告のサインを無視した。"},
-            {"english": "benefit", "japanese": "利点", "sentence": "The benefits outweigh the costs.", "sentence_ja": "利点が費用を上回る。"},
-            {"english": "harmful", "japanese": "有害な", "sentence": "Too much sun can be harmful.", "sentence_ja": "日光の浴びすぎは有害になりうる。"}
+            { "english": "fever", "japanese": "熱", "sentence": "I had a high fever last night.", "sentence_ja": "昨夜、私は高熱を出した。" },
+            { "english": "be prepared for", "japanese": "~の用意のできた", "sentence": "Are you prepared for the exam?", "sentence_ja": "試験の用意はできていますか？" },
+            { "english": "competition", "japanese": "競技会", "sentence": "He won first prize in the competition.", "sentence_ja": "彼はその競技会で一等賞をとった。" },
+            { "english": "fix", "japanese": "~を整える", "sentence": "Let me fix my hair before the photo.", "sentence_ja": "写真を撮る前に髪を整えさせて。" },
+            { "english": "do", "japanese": "間に合う", "sentence": "Any pen will do.", "sentence_ja": "どんなペンでも間に合います（十分です）。" },
+            { "english": "renewables", "japanese": "再生可能エネルギー", "sentence": "We should use more renewables like solar power.", "sentence_ja": "私たちは太陽光のような再生可能エネルギーをもっと使うべきだ。" },
+            { "english": "besides", "japanese": "そのうえ", "sentence": "It's too late to go; besides, I'm tired.", "sentence_ja": "行くには遅すぎるし、そのうえ私は疲れている。" },
+            { "english": "by oneself", "japanese": "一人で", "sentence": "She traveled around the world by herself.", "sentence_ja": "彼女は一人で世界中を旅行した。" },
+            { "english": "motivated", "japanese": "やる気のある", "sentence": "Highly motivated students learn fast.", "sentence_ja": "やる気のある生徒は習得が早い。" },
+            { "english": "Why don't you...?", "japanese": "~したらどうですか?", "sentence": "Why don't you come with us?", "sentence_ja": "私たちと一緒に来たらどうですか？" },
+            { "english": "complicated", "japanese": "難しい", "sentence": "The rules of this game are complicated.", "sentence_ja": "このゲームのルールは難しい（複雑だ）。" },
+            { "english": "according to", "japanese": "~によれば", "sentence": "According to the weather report, it will rain.", "sentence_ja": "天気予報によれば、雨が降るだろう。" },
+            { "english": "rate", "japanese": "率", "sentence": "The birth rate is declining.", "sentence_ja": "出生率は低下している。" },
+            { "english": "more than", "japanese": "~より多い", "sentence": "More than 100 people attended.", "sentence_ja": "100人より多い（100人を超える）人々が出席した。" },
+            { "english": "misunderstand", "japanese": "~を誤解する", "sentence": "I think you misunderstand my point.", "sentence_ja": "あなたは私の要点を誤解していると思います。" },
+            { "english": "rarely", "japanese": "めったに〜ない", "sentence": "He rarely eats meat.", "sentence_ja": "彼はめったに肉を食べない。" },
+            { "english": "twist", "japanese": "~を捻挫する", "sentence": "I twisted my ankle while running.", "sentence_ja": "走っている最中に足首を捻挫した。" },
+            { "english": "remind A of B", "japanese": "AにBを思い出させる", "sentence": "This song reminds me of my childhood.", "sentence_ja": "この歌は私に子供時代を思い出させる。" },
+            { "english": "turn out to be", "japanese": "~とわかる", "sentence": "The rumor turned out to be true.", "sentence_ja": "その噂は本当だとわかった。" },
+            { "english": "try to do", "japanese": "~しようと努力する", "sentence": "I will try to finish it by tomorrow.", "sentence_ja": "明日までにそれを終わらせようと努力します。" },
+            { "english": "hear O done", "japanese": "Oが~されるのを聞く", "sentence": "I heard my name called from behind.", "sentence_ja": "私は後ろから自分の名前が呼ばれるのを聞いた。" },
+            { "english": "species", "japanese": "種", "sentence": "Many species of birds live here.", "sentence_ja": "多くの種の鳥がここに住んでいる。" },
+            { "english": "be kept doing", "japanese": "~させられ続ける", "sentence": "I was kept waiting for an hour.", "sentence_ja": "私は1時間待たされ続けた。" },
+            { "english": "have difficulty in doing", "japanese": "~するのに苦労する", "sentence": "I had difficulty in finding his house.", "sentence_ja": "彼の家を見つけるのに苦労した。" },
+            { "english": "come across", "japanese": "~を(偶然)見つける", "sentence": "I came across an old letter.", "sentence_ja": "私は古い手紙を偶然見つけた。" },
+            { "english": "assure A that...", "japanese": "Aに...だと保証する", "sentence": "I assure you that it is safe.", "sentence_ja": "それが安全だとあなたに保証します。" },
+            { "english": "A as well as B", "japanese": "BだけでなくAも", "sentence": "She speaks French as well as English.", "sentence_ja": "彼女は英語だけでなくフランス語も話す。" },
+            { "english": "solid", "japanese": "確固たる", "sentence": "We need solid evidence.", "sentence_ja": "私たちには確固たる証拠が必要だ。" },
+            { "english": "definition", "japanese": "定義", "sentence": "What is the definition of success?", "sentence_ja": "成功の定義とは何ですか？" },
+            { "english": "come up with", "japanese": "~を思いつく", "sentence": "He came up with a great idea.", "sentence_ja": "彼は素晴らしいアイデアを思いついた。" },
+            { "english": "term", "japanese": "言葉", "sentence": "This is a technical term.", "sentence_ja": "これは専門的な言葉（用語）です。" },
+            { "english": "determine", "japanese": "~を決定する", "sentence": "Attitude determines altitude.", "sentence_ja": "態度が（人生の）高さを決定する。" },
+            { "english": "title", "japanese": "~に表題をつける", "sentence": "The book is titled 'Life'.", "sentence_ja": "その本は「人生」と表題をつけられている。" },
+            { "english": "A rather than B", "japanese": "BよりもむしろA", "sentence": "I drink tea rather than coffee.", "sentence_ja": "私はコーヒーよりもむしろ紅茶を飲む。" },
+            { "english": "export", "japanese": "~を輸出する", "sentence": "Japan exports cars to many countries.", "sentence_ja": "日本は多くの国へ車を輸出している。" },
+            { "english": "obtain", "japanese": "~を手に入れる", "sentence": "He obtained a lot of information.", "sentence_ja": "彼は多くの情報を手に入れた。" },
+            { "english": "treat A with B", "japanese": "AをBで処理する", "sentence": "The wood is treated with chemicals.", "sentence_ja": "その木材は化学薬品で処理されている。" },
+            { "english": "argue that...", "japanese": "~だと主張する", "sentence": "He argued that the policy was wrong.", "sentence_ja": "彼はその政策は間違っていると主張した。" },
+            { "english": "carbon emissions", "japanese": "二酸化炭素排出量", "sentence": "We must reduce carbon emissions.", "sentence_ja": "私たちは二酸化炭素排出量を減らさなければならない。" },
+            { "english": "the opposite", "japanese": "正反対のこと", "sentence": "He did the exact opposite of what I said.", "sentence_ja": "彼は私が言ったことの正反対のことをした。" },
+            { "english": "rely on", "japanese": "~に依存する", "sentence": "Don't rely too much on others.", "sentence_ja": "他人にあまり依存しすぎてはいけない。" },
+            { "english": "result in", "japanese": "~という結果になる", "sentence": "The accident resulted in traffic jams.", "sentence_ja": "その事故は交通渋滞という結果になった。" },
+            { "english": "multiply", "japanese": "(どんどん)増える", "sentence": "Problems seem to multiply.", "sentence_ja": "問題はどんどん増えるようだ。" },
+            { "english": "thanks to", "japanese": "~のおかげで", "sentence": "Thanks to your help, we succeeded.", "sentence_ja": "あなたの助けのおかげで、私たちは成功した。" },
+            { "english": "scarce", "japanese": "乏しい", "sentence": "Food was scarce during the war.", "sentence_ja": "戦時中、食料は乏しかった。" },
+            { "english": "force O to do", "japanese": "Oに~することを強いる", "sentence": "The rain forced us to cancel the picnic.", "sentence_ja": "雨は私たちにピクニックを中止することを強いた（雨のせいで中止せざるを得なかった）。" },
+            { "english": "dense", "japanese": "密集した", "sentence": "The forest is very dense.", "sentence_ja": "その森はとても密集している。" },
+            { "english": "row", "japanese": "列", "sentence": "We sat in the front row.", "sentence_ja": "私たちは最前列に座った。" },
+            { "english": "be faced with", "japanese": "~に直面している", "sentence": "We are faced with a difficult problem.", "sentence_ja": "私たちは難しい問題に直面している。" },
+            { "english": "consume", "japanese": "~を消費する", "sentence": "This car consumes a lot of gas.", "sentence_ja": "この車は多くのガソリンを消費する。" },
+            { "english": "ship", "japanese": "~を輸送する", "sentence": "Goods are shipped by sea.", "sentence_ja": "商品は海路で輸送される。" },
+            { "english": "examine", "japanese": "~を調査する", "sentence": "The doctor examined the patient.", "sentence_ja": "医者は患者を調査（診察）した。" },
+            { "english": "apparent", "japanese": "明白な", "sentence": "It became apparent that he was lying.", "sentence_ja": "彼が嘘をついていることが明白になった。" },
+            { "english": "put aside", "japanese": "~をとっておく", "sentence": "Put aside some money for the future.", "sentence_ja": "将来のためにいくらかお金をとっておきなさい。" },
+            { "english": "escape", "japanese": "逃避", "sentence": "Books provide an escape from reality.", "sentence_ja": "本は現実からの逃避を提供してくれる。" },
+            { "english": "replacement", "japanese": "代用品", "sentence": "We need a replacement for the broken part.", "sentence_ja": "壊れた部品の代用品が必要だ。" },
+            { "english": "hold on to", "japanese": "~を持ち続ける", "sentence": "Hold on to your dreams.", "sentence_ja": "自分の夢を持ち続けなさい。" },
+            { "english": "on average", "japanese": "平均して", "sentence": "On average, I sleep 7 hours a day.", "sentence_ja": "平均して、私は1日7時間眠る。" },
+            { "english": "outcome", "japanese": "結果", "sentence": "The outcome of the election is uncertain.", "sentence_ja": "選挙の結果は不確実だ。" },
+            { "english": "recommend that...", "japanese": "~だと勧める", "sentence": "I recommend that you go there.", "sentence_ja": "私はあなたがそこへ行くことを勧める。" },
+            { "english": "absolutely", "japanese": "絶対に", "sentence": "You are absolutely right.", "sentence_ja": "あなたは絶対に正しい。" },
+            { "english": "as a result of", "japanese": "~の結果として", "sentence": "He fell ill as a result of overwork.", "sentence_ja": "過労の結果として彼は病気になった。" },
+            { "english": "fear that...", "japanese": "~ではないかと心配する", "sentence": "I fear that we might be late.", "sentence_ja": "私たちは遅れるのではないかと心配している。" },
+            { "english": "satisfaction", "japanese": "満足", "sentence": "Customer satisfaction is our goal.", "sentence_ja": "顧客満足が私たちの目標だ。" },
+            { "english": "hesitate to do", "japanese": "~するのをためらう", "sentence": "Don't hesitate to ask questions.", "sentence_ja": "質問するのをためらわないで。" },
+            { "english": "think of A as B", "japanese": "AをBとみなす", "sentence": "I think of him as a brother.", "sentence_ja": "私は彼を兄弟とみなしている。" },
+            { "english": "apply", "japanese": "~を適用する", "sentence": "The rule applies to everyone.", "sentence_ja": "そのルールは全員に適用される。" },
+            { "english": "ensure that...", "japanese": "確実に~するようにする", "sentence": "Please ensure that the door is locked.", "sentence_ja": "確実にドアが施錠されているようにしてください。" },
+            { "english": "get the most out of", "japanese": "~を最大限に生かす", "sentence": "Get the most out of your time.", "sentence_ja": "あなたの時間を最大限に生かしなさい。" },
+            { "english": "frightening", "japanese": "ぞっとさせる", "sentence": "It was a frightening experience.", "sentence_ja": "それはぞっとさせる経験だった。" },
+            { "english": "focus on", "japanese": "~に重点を置く", "sentence": "Focus on your studies.", "sentence_ja": "勉強に重点を置きなさい。" },
+            { "english": "make sure that...", "japanese": "~ということを確かめる", "sentence": "Make sure that you are ready.", "sentence_ja": "準備ができているということを確かめなさい。" },
+            { "english": "misuse", "japanese": "~を悪用する", "sentence": "Don't misuse your power.", "sentence_ja": "権力を悪用してはいけない。" },
+            { "english": "when it comes to", "japanese": "~に関しては", "sentence": "When it comes to cooking, he is the best.", "sentence_ja": "料理に関しては、彼が一番だ。" },
+            { "english": "particularly", "japanese": "特に", "sentence": "I like fruit, particularly apples.", "sentence_ja": "私は果物、特にリンゴが好きだ。" },
+            { "english": "role model", "japanese": "模範となるもの", "sentence": "Parents are role models for children.", "sentence_ja": "親は子供にとって模範となるものだ。" },
+            { "english": "look forward to", "japanese": "~を楽しみに待つ", "sentence": "I look forward to seeing you.", "sentence_ja": "あなたに会えるのを楽しみに待っています。" },
+            { "english": "It is said that...", "japanese": "~と言われる", "sentence": "It is said that time is money.", "sentence_ja": "時は金なりと言われる。" },
+            { "english": "find out", "japanese": "~を見極める", "sentence": "We need to find out the truth.", "sentence_ja": "私たちは真実を見極める（見つけ出す）必要がある。" },
+            { "english": "distraction", "japanese": "邪魔", "sentence": "Noise is a big distraction when studying.", "sentence_ja": "勉強するとき騒音は大きな邪魔だ。" },
+            { "english": "disturb", "japanese": "~に迷惑をかける", "sentence": "Sorry to disturb you.", "sentence_ja": "ご迷惑をかけてすみません。" },
+            { "english": "emergency", "japanese": "緊急事態", "sentence": "Call 119 in an emergency.", "sentence_ja": "緊急事態には119番に電話しなさい。" },
+            { "english": "aspect", "japanese": "側面", "sentence": "We discussed every aspect of the plan.", "sentence_ja": "私たちはその計画のあらゆる側面を議論した。" },
+            { "english": "in favor of", "japanese": "~に賛成で", "sentence": "I am in favor of the proposal.", "sentence_ja": "私はその提案に賛成だ。" }
         ];
 
         // --- APP STATE ---
@@ -593,16 +561,12 @@
         }
 
         function speakText(text) {
-            // Remove HTML tags for speech
-            const cleanText = text.replace(/<[^>]*>/g, '');
-            const u = new SpeechSynthesisUtterance(cleanText);
+            const u = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g, ''));
             u.lang = 'en-US';
-            u.rate = 0.9;
-            
-            // Prefer US English Google Voice or any US voice
+            // Select best American voice
             const v = voices.find(x => x.name.includes('Google US English')) || voices.find(x => x.lang === 'en-US');
             if (v) u.voice = v;
-            
+            u.rate = 0.9;
             window.speechSynthesis.speak(u);
         }
 
@@ -656,7 +620,7 @@
             speakText(els.englishText.textContent);
         };
 
-        // Recording & Evaluation (Lenient scoring)
+        // Recording
         document.getElementById('record-btn').onclick = async (e) => {
             e.stopPropagation();
             if (!window.SpeechRecognition) return alert('このブラウザは音声認識をサポートしていません');
@@ -693,9 +657,8 @@
 
                 recognition.onresult = (ev) => {
                     const transcript = ev.results[0][0].transcript;
-                    const target = els.englishText.textContent.replace(/<[^>]*>/g, '');
-                    
-                    // Simple similarity check (Levenshtein distance)
+                    const target = els.englishText.textContent;
+                    // Levenshtein
                     const dist = (s, t) => {
                         if (!s.length) return t.length;
                         if (!t.length) return s.length;
@@ -708,16 +671,13 @@
                         }
                         return arr[t.length][s.length];
                     };
-                    
                     const d = dist(transcript, target);
                     const max = Math.max(transcript.length, target.length);
-                    // Lenient scoring formula: boost score by 20%
-                    let score = Math.max(0, Math.round((1 - d / max) * 100));
-                    if (score > 0) score = Math.min(100, score + 20); 
+                    const score = Math.max(0, Math.round((1 - d / max) * 100));
                     
                     let msg = '', color = '';
-                    if (score > 70) { msg = 'Excellent!'; color = 'text-green-600'; } // lowered threshold
-                    else if (score > 40) { msg = 'Good job!'; color = 'text-blue-500'; }
+                    if (score > 80) { msg = 'Excellent!'; color = 'text-green-600'; }
+                    else if (score > 50) { msg = 'Good job!'; color = 'text-blue-500'; }
                     else { msg = 'Try again'; color = 'text-red-500'; }
                     
                     els.pronunciationFeedback.innerHTML = `
@@ -786,14 +746,11 @@
         document.getElementById('close-modal-btn').onclick = () => document.getElementById('pdf-modal').classList.add('hidden');
         document.getElementById('close-modal-icon').onclick = () => document.getElementById('pdf-modal').classList.add('hidden');
 
-        // Reuse PDF logic
+        // Reuse PDF logic with generated sentences
         const pdfActions = [
             { id: 'download-list-btn', title: '単語リスト', content: (ws) => `<ul style="column-count:2; gap:40px;">${ws.map(w => `<li style="margin-bottom:10px;"><b>${w.english}</b>: ${w.japanese}</li>`).join('')}</ul>` },
-            { id: 'download-en-quiz-btn', title: '英単語テスト', content: (ws) => {
-                // Ensure unique numbering by not relying on index alone if mixed
-                return `<h2>問題</h2><ol>${ws.map((w,i) => `<li style="margin-bottom:15px;">${w.japanese}: ______________</li>`).join('')}</ol><h2 style="page-break-before:always;">解答</h2><ol>${ws.map(w => `<li>${w.english}</li>`).join('')}</ol>` 
-            }},
-            { id: 'download-ja-quiz-btn', title: '和訳テスト', content: (ws) => `<h2>問題</h2><ol>${ws.map(w => `<li style="margin-bottom:15px;">${w.english}: ______________</li>`).join('')}</ol><h2 style="page-break-before:always;">解答</h2><ol>${ws.map(w => `<li>${w.japanese}</li>`).join('')}</ol>` },
+            { id: 'download-en-quiz-btn', title: '英単語テスト', content: (ws) => `<h2>問題</h2><ol>${ws.map(w => `<li style="margin-bottom:15px;">${w.japanese}: ______________</li>`).join('')}</ol><h2 style="page-break-before:always;">解答</h2><ol>${ws.map((w,i) => `<li>${w.english}</li>`).join('')}</ol>` },
+            { id: 'download-ja-quiz-btn', title: '和訳テスト', content: (ws) => `<h2>問題</h2><ol>${ws.map(w => `<li style="margin-bottom:15px;">${w.english}: ______________</li>`).join('')}</ol><h2 style="page-break-before:always;">解答</h2><ol>${ws.map((w,i) => `<li>${w.japanese}</li>`).join('')}</ol>` },
             { id: 'download-mixed-quiz-btn', title: '混合テスト', content: (ws) => {
                 const shuf = [...ws].sort(()=>0.5-Math.random());
                 const qs = shuf.map(w => Math.random()>0.5 ? `${w.japanese}: ______________` : `${w.english}: ______________`);
@@ -804,10 +761,11 @@
                 const valid = ws.filter(w => w.sentence);
                 if (!valid.length) return '例文がありません';
                 return `<h2>問題</h2><ol>${valid.map(w => {
-                    const k = w.english.split(' ')[0].replace(/[^\w]/g,'');
-                    // Create blank
-                    const blanked = w.sentence.replace(new RegExp(k+'\\w*','i'), '_______');
-                    return `<li style="margin-bottom:15px;">${blanked}<br><small>${w.sentence_ja||w.japanese}</small></li>`;
+                    const k = w.english.split(' ')[0].replace(/[^\w]/g,''); // Simple approximation
+                    // Escape for regex
+                    const esc = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const sentenceParts = w.sentence.replace(new RegExp(`(${esc}\\w*)`, 'i'), '_______');
+                    return `<li style="margin-bottom:15px;">${sentenceParts}<br><small>${w.sentence_ja||w.japanese}</small></li>`;
                 }).join('')}</ol><h2 style="page-break-before:always;">解答</h2><ol>${valid.map(w=>`<li>${w.english}</li>`).join('')}</ol>`;
             }},
             { id: 'download-sentence-mixed-quiz-btn', title: '例文実戦テスト', content: (ws) => {
@@ -816,12 +774,12 @@
                 const qs = [], as = [];
                 valid.sort(()=>0.5-Math.random()).forEach(w => {
                     const k = w.english.split(' ')[0].replace(/[^\w]/g,'');
+                    const esc = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                     if(Math.random()>0.5) {
-                        qs.push(`${w.sentence.replace(new RegExp(k+'\\w*','i'), '_______')}<br><small>${w.sentence_ja||w.japanese}</small>`);
+                        qs.push(`${w.sentence.replace(new RegExp(`(${esc}\\w*)`, 'i'), '_______')}<br><small>${w.sentence_ja||w.japanese}</small>`);
                         as.push(w.english);
                     } else {
-                        const sent = w.sentence.replace(new RegExp(`(${k}\\w*)`,'i'), '<u>$1</u>');
-                        qs.push(`${sent}<br>下線部和訳: __________________`);
+                        qs.push(`${w.sentence.replace(new RegExp(`(${esc}\\w*)`,'i'), '<u>$1</u>')}<br>下線部和訳: __________________`);
                         as.push(w.japanese);
                     }
                 });
@@ -835,7 +793,7 @@
                 if (!checks.length) return alert('単語を選択してください');
                 const words = Array.from(checks).map(c => vocabularyData[c.dataset.index]);
                 const w = window.open('', '_blank');
-                w.document.write(`<html><head><title>${act.title}</title><style>body{font-family:sans-serif;margin:30px;}h2{border-bottom:1px solid #000;padding-bottom:10px;margin-bottom:20px;} li{line-height:1.6;}</style></head><body><h1>${act.title}</h1>${act.content(words)}</body></html>`);
+                w.document.write(`<html><head><title>${act.title}</title><style>body{font-family:sans-serif;margin:30px;}h2{border-bottom:1px solid #000;margin-top:20px;}ol{padding-left:25px;}li{margin-bottom:10px;}</style></head><body><h1>${act.title}</h1>${act.content(words)}</body></html>`);
                 w.document.close();
                 setTimeout(() => w.print(), 500);
             };
